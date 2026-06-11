@@ -1,48 +1,12 @@
-<!-- 首页 - 文章时间线列表 -->
 <div class="sb-page-header">
   <h1 class="sb-page-hero">探索 · 记录 · 分享 🚀</h1>
   <p class="sb-page-sub">在代码的宇宙中，寻找属于我们的星辰大海。</p>
 </div>
 
-<div class="sb-post-list" id="postList">
-  {{#postList}}
-  <div class="sb-post-card" onclick="location.href='{{postUrl}}'">
-    <div class="sb-post-date">
-      <span class="sb-post-year">{{postYear}}</span>
-      <span class="sb-post-day">{{postMonth}}/{{postDay}}</span>
-    </div>
-    <div class="sb-post-body">
-      <div class="sb-post-labels">
-        {{#labels}}
-        <span class="sb-label" style="border-color:{{color}};color:{{color}}">{{name}}</span>
-        {{/labels}}
-      </div>
-      <h2 class="sb-post-title">{{postTitle}}</h2>
-      <p class="sb-post-excerpt">{{postExcerpt}}</p>
-      <div class="sb-post-meta">
-        <span>👁 {{readNum}}</span>
-        <span>💬 {{commentNum}}</span>
-        <span>⭐ {{likeNum}}</span>
-      </div>
-    </div>
-    <div class="sb-post-thumb">
-      <div class="sb-thumb-placeholder">
-        <span>{{postMonth}}/{{postDay}}</span>
-      </div>
-    </div>
-  </div>
-  {{/postList}}
+<div class="sb-post-list">
+  {{postList}}
 </div>
 
-<!-- 分页 -->
-{{#pagination}}
 <div class="sb-pagination">
-  {{#prevPage}}<a href="{{prevUrl}}" class="sb-page-btn">← 上一页</a>{{/prevPage}}
-  <div class="sb-page-nums">
-    {{#pageList}}
-    <a href="{{pageUrl}}" class="sb-page-btn {{#current}}active{{/current}}">{{pageNum}}</a>
-    {{/pageList}}
-  </div>
-  {{#nextPage}}<a href="{{nextUrl}}" class="sb-page-btn">下一页 →</a>{{/nextPage}}
+  {{pagination}}
 </div>
-{{/pagination}}
