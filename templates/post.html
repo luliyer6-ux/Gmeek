@@ -1,86 +1,49 @@
-<!-- 文章页 -->
 <div class="sb-post-layout">
 
-  <!-- 文章主体 -->
   <article class="sb-article">
-
-    <!-- 文章头部 -->
     <div class="sb-article-header">
-      <div class="sb-article-labels">
-        {{#labels}}
-        <span class="sb-label" style="border-color:{{color}};color:{{color}}">{{name}}</span>
-        {{/labels}}
-      </div>
       <h1 class="sb-article-title">{{postTitle}}</h1>
       <div class="sb-article-info">
         <img src="{{avatarUrl}}" class="sb-article-avatar" alt="{{owner}}">
         <span class="sb-article-author">{{owner}}</span>
         <span class="sb-article-sep">·</span>
         <span class="sb-article-date">{{postDate}}</span>
-        <span class="sb-article-sep">·</span>
-        <span>📖 {{wordCount}} 字</span>
-        <span class="sb-article-sep">·</span>
-        <span>⏱ {{readTime}} 分钟</span>
       </div>
     </div>
 
-    <!-- 文章内容 -->
     <div class="markdown-body" id="postBody">
-      {{postContent}}
+      {{postBody}}
     </div>
 
-    <!-- 文章底部操作 -->
     <div class="sb-article-footer">
       <div class="sb-article-actions">
-        <button class="sb-action-btn" id="likeBtn" onclick="sbLike(this)">
-          <span>👍</span> <span id="likeCount">{{likeNum}}</span>
+        <button class="sb-action-btn" onclick="sbLike(this)">
+          👍 <span id="likeCount">0</span>
         </button>
-        <button class="sb-action-btn" onclick="sbShare()">
-          <span>🔗</span> 分享
-        </button>
-      </div>
-      <div class="sb-article-nav">
-        {{#prevPost}}<a href="{{prevUrl}}" class="sb-nav-post">← {{prevTitle}}</a>{{/prevPost}}
-        {{#nextPost}}<a href="{{nextUrl}}" class="sb-nav-post">{{nextTitle}} →</a>{{/nextPost}}
+        <button class="sb-action-btn" onclick="sbShare()">🔗 分享</button>
       </div>
     </div>
 
-    <!-- 评论区 -->
-    {{#needComment}}
-    <div class="sb-comments" id="comments">
+    <div class="sb-comments">
       <div class="sb-widget-title">💬 评论</div>
       <div id="gitalk-container"></div>
     </div>
-    {{/needComment}}
-
   </article>
 
-  <!-- 文章右侧边栏 -->
   <div class="sb-article-aside">
-
-    <!-- 目录 -->
-    <div class="sb-widget sb-toc-widget" id="tocWidget">
+    <div class="sb-widget" id="tocWidget">
       <div class="sb-widget-title">📑 文章目录</div>
       <div id="sb-toc" class="sb-toc"></div>
     </div>
 
-    <!-- 文章信息 -->
-    <div class="sb-widget sb-info-widget">
+    <div class="sb-widget">
       <div class="sb-widget-title">ℹ 文章信息</div>
-      <div class="sb-info-row"><span>发布日期</span><span>{{postDate}}</span></div>
-      <div class="sb-info-row"><span>字数统计</span><span>{{wordCount}} 字</span></div>
-      <div class="sb-info-row"><span>阅读时长</span><span>{{readTime}} 分钟</span></div>
-      <div class="sb-info-row sb-info-labels">
-        <span>文章标签</span>
-        <span>
-          {{#labels}}
-          <span class="sb-label" style="border-color:{{color}};color:{{color}}">{{name}}</span>
-          {{/labels}}
-        </span>
+      <div class="sb-info-row">
+        <span>发布日期</span>
+        <span>{{postDate}}</span>
       </div>
     </div>
 
-    <!-- 阅读进度 -->
     <div class="sb-widget">
       <div class="sb-widget-title">📊 阅读进度</div>
       <div class="sb-read-progress-wrap">
@@ -90,6 +53,6 @@
         <span class="sb-read-progress-num" id="readProgressNum">0%</span>
       </div>
     </div>
-
   </div>
+
 </div>
