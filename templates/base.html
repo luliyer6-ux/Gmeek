@@ -6,28 +6,22 @@
     <meta name="theme-color" content="#07071a">
     <title>{{title}}</title>
     <link rel="icon" href="{{avatarUrl}}">
-    <!-- GitHub Primer CSS (Gmeek 原生依赖) -->
     <link rel="stylesheet" href="https://unpkg.com/@primer/css@^21.0.7/dist/primer.css" crossorigin="anonymous" media="default">
-    <!-- 星空主题 -->
     <link rel="stylesheet" href="{{rootUrl}}custom.css">
-    {{customHead}}
+    {{allHead}}
 </head>
 <body>
 
-<!-- ===== 星空粒子画布 ===== -->
 <canvas id="sb-stars"></canvas>
 <div class="sb-nebula n1"></div>
 <div class="sb-nebula n2"></div>
-<!-- 顶部阅读进度条 -->
 <div id="sb-progress"></div>
 
-<!-- ===== 整体布局容器 ===== -->
 <div class="sb-layout">
 
-  <!-- ========== 左侧导航 ========== -->
+  <!-- 左侧导航 -->
   <aside class="sb-sidebar-left" id="sbSidebarLeft">
-
-    <!-- Logo & 站点名 -->
+    <button class="sb-toggle" id="sbToggle">☰</button>
     <div class="sb-brand">
       <a href="{{rootUrl}}" class="sb-brand-link">
         <img src="{{avatarUrl}}" class="sb-avatar" alt="avatar">
@@ -37,107 +31,80 @@
         </div>
       </a>
     </div>
-
-    <!-- 导航菜单 -->
     <nav class="sb-nav">
       <a href="{{rootUrl}}" class="sb-nav-item" data-page="home">
         <span class="sb-nav-icon">🏠</span><span>首页</span>
       </a>
-      <a href="{{rootUrl}}archives.html" class="sb-nav-item" data-page="archives">
+      <a href="{{rootUrl}}archives.html" class="sb-nav-item">
         <span class="sb-nav-icon">📋</span><span>归档</span>
       </a>
-      <a href="{{rootUrl}}tag.html" class="sb-nav-item" data-page="tag">
+      <a href="{{rootUrl}}tag.html" class="sb-nav-item">
         <span class="sb-nav-icon">🏷️</span><span>标签</span>
       </a>
-      {{#singlePage}}
-      {{#singlePage.list}}
-      <a href="{{rootUrl}}{{url}}" class="sb-nav-item">
-        <span class="sb-nav-icon">📄</span><span>{{title}}</span>
-      </a>
-      {{/singlePage.list}}
-      {{/singlePage}}
     </nav>
-
-    <!-- 社交图标 -->
     <div class="sb-social">
       <a href="https://github.com/{{owner}}" target="_blank" class="sb-social-btn" title="GitHub">
         <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-          0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-          -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
-          .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
-          -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09
-          2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82
-          2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01
-          2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
         </svg>
       </a>
-      {{#showEmail}}
-      <a href="mailto:{{email}}" class="sb-social-btn" title="Email">✉</a>
-      {{/showEmail}}
     </div>
-
-    <!-- 移动端折叠按钮 -->
-    <button class="sb-toggle" id="sbToggle" aria-label="菜单">☰</button>
   </aside>
 
-  <!-- ========== 主内容区 ========== -->
+  <!-- 主内容 -->
   <main class="sb-main" id="sbMain">
     {{content}}
   </main>
 
-  <!-- ========== 右侧边栏 ========== -->
-  <aside class="sb-sidebar-right" id="sbSidebarRight">
-
-    <!-- 个人卡片 -->
+  <!-- 右侧边栏 -->
+  <aside class="sb-sidebar-right">
     <div class="sb-widget sb-profile-card">
       <div class="sb-profile-avatar-wrap">
-        <img src="{{avatarUrl}}" class="sb-profile-avatar" alt="{{owner}}">
+        <img src="{{avatarUrl}}" class="sb-profile-avatar" alt="Cooper">
         <div class="sb-profile-ring"></div>
       </div>
       <div class="sb-profile-name">Cooper</div>
       <div class="sb-profile-bio">我爱这个世界 🌏</div>
       <div class="sb-profile-tag">代码是诗，设计是远方 🚀</div>
-      <div class="sb-profile-stats" id="sbProfileStats">
-        <div class="sb-stat"><span class="sb-stat-num" id="statPosts">-</span><span class="sb-stat-label">文章</span></div>
-        <div class="sb-stat"><span class="sb-stat-num" id="statTags">-</span><span class="sb-stat-label">标签</span></div>
+      <div class="sb-profile-stats">
+        <div class="sb-stat">
+          <span class="sb-stat-num" id="statPosts">-</span>
+          <span class="sb-stat-label">文章</span>
+        </div>
+        <div class="sb-stat">
+          <span class="sb-stat-num" id="statTags">-</span>
+          <span class="sb-stat-label">标签</span>
+        </div>
       </div>
     </div>
-
-    <!-- 热门标签 -->
     <div class="sb-widget">
       <div class="sb-widget-title">🏷 热门标签</div>
       <div class="sb-tag-cloud" id="sbTagCloud">
         <span class="sb-tag-placeholder">加载中…</span>
       </div>
     </div>
-
-    <!-- 最近文章 -->
     <div class="sb-widget">
       <div class="sb-widget-title">📝 最近文章</div>
       <div class="sb-recent-list" id="sbRecentList">
         <span class="sb-tag-placeholder">加载中…</span>
       </div>
     </div>
-
   </aside>
 
-</div><!-- /.sb-layout -->
+</div>
 
-<!-- 🚀 返回顶部 -->
 <div id="sb-top" title="返回顶部">🚀</div>
 
-<!-- 音乐播放器 -->
 <div id="sb-player" style="display:none">
   <div class="sb-disc"></div>
   <div class="sb-meta">
     <div class="sb-name">Stardust - Hans Zimmer</div>
     <div class="sb-bar"><i></i></div>
   </div>
-  <button class="sb-btn" aria-label="播放/暂停">▶</button>
+  <button class="sb-btn">▶</button>
 </div>
 
 <script src="{{rootUrl}}custom.js"></script>
-{{customScript}}
+{{allHead}}
 </body>
 </html>
